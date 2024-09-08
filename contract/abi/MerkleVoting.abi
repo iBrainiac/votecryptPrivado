@@ -2,6 +2,52 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string[]",
+				"name": "_names",
+				"type": "string[]"
+			}
+		],
+		"name": "addCandidates",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "endElection",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_merkleRoot",
+				"type": "bytes32"
+			}
+		],
+		"name": "setMerkleRoot",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_electionDuration",
+				"type": "uint256"
+			}
+		],
+		"name": "startElection",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "_electionName",
 				"type": "string"
@@ -13,15 +59,39 @@
 	{
 		"inputs": [
 			{
-				"internalType": "string[]",
-				"name": "_names",
-				"type": "string[]"
+				"internalType": "bytes32[]",
+				"name": "_merkleProof",
+				"type": "bytes32[]"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_encryptedVote",
+				"type": "bytes"
 			}
 		],
-		"name": "addCandidates",
+		"name": "vote",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "encryptedVote",
+				"type": "bytes"
+			}
+		],
+		"name": "VoteSubmitted",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -113,19 +183,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "endElection",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "winnerIndex",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -139,11 +196,6 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -214,32 +266,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "_merkleRoot",
-				"type": "bytes32"
-			}
-		],
-		"name": "setMerkleRoot",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_electionDuration",
-				"type": "uint256"
-			}
-		],
-		"name": "startElection",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "totalVotes",
 		"outputs": [
@@ -250,24 +276,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32[]",
-				"name": "_merkleProof",
-				"type": "bytes32[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_candidateIndex",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -286,9 +294,9 @@
 				"type": "bool"
 			},
 			{
-				"internalType": "uint256",
-				"name": "vote",
-				"type": "uint256"
+				"internalType": "bytes",
+				"name": "encryptedVote",
+				"type": "bytes"
 			}
 		],
 		"stateMutability": "view",
